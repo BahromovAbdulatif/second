@@ -14,61 +14,62 @@
   }
   *{box-sizing:border-box}
   html,body{height:100%}
-  body{margin:0;background:linear-gradient(180deg,#e9f0ff 0%, #f6f8ff 120%);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;color:var(--ink)}
+  body{
+    margin:0;background:linear-gradient(180deg,#e9f0ff 0%, #f6f8ff 120%);
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;color:var(--ink)
+  }
   a{color:inherit;text-decoration:none}
 
   /* Topbar */
-  .topbar{
-    position:sticky;top:0;z-index:50;
-    backdrop-filter:saturate(1.2) blur(6px);
-    background:rgba(255,255,255,.8);
-    border-bottom:1px solid var(--border);
-  }
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:saturate(1.2) blur(6px);border-bottom:1px solid var(--border)}
   .topbar-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
   .brand{display:flex;gap:10px;align-items:center;font-weight:800}
   .brand-badge{width:28px;height:28px;border-radius:8px;background:#0b3ea9}
   .tabs{display:flex;gap:6px;flex-wrap:wrap}
-  .tab{
-    padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:600;color:#1f2a5a;
-  }
+  .tab{padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:600;color:#1f2a5a}
   .tab.active{background:#eef2ff;color:#0b3ea9}
 
-  /* Container */
+  /* Layout */
   .wrap{max-width:1200px;margin:24px auto;padding:0 20px}
-
-  /* Card / panel */
   .card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
   .card-head{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid var(--border)}
   .card-title{margin:0;font-size:18px;font-weight:800}
   .card-body{padding:18px 20px}
-
-  /* Button */
   .btn{appearance:none;border:0;border-radius:12px;padding:10px 14px;font-weight:700;cursor:pointer;transition:filter .15s, transform .03s}
   .btn:active{transform:translateY(1px)}
   .btn.primary{background:var(--brand);color:#fff;box-shadow:0 8px 18px rgba(30,102,255,.18)}
   .btn.ghost{background:#eef2ff;color:#1f2a5a}
   .btn.icon{display:inline-flex;align-items:center;gap:8px}
+  .muted{color:var(--muted);font-size:12px}
 
   /* Table */
-  .table{width:100%;border-collapse:separate;border-spacing:0}
-  .table th,.table td{padding:12px 12px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top;font-size:14px}
+  .table-wrap{overflow:auto}
+  .table{width:100%;border-collapse:separate;border-spacing:0;min-width:900px}
+  .table th,.table td{padding:12px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top;font-size:14px}
   .table th{color:#334155;background:#f8fafc;font-weight:800}
   .table tr:hover td{background:#fafbff}
   .badge{display:inline-block;padding:4px 8px;border-radius:999px;font-size:12px;background:#eef2ff;color:#0b3ea9;font-weight:700}
 
-  /* Sections (tabs content) */
+  /* Sections */
   .section{display:none}
   .section.active{display:block}
 
-  /* Modal */
+  /* Modal (responsive + scrollable) */
   .modal-backdrop{
     position:fixed;inset:0;background:rgba(2,6,23,.5);
     display:none;align-items:center;justify-content:center;padding:20px;z-index:100;
   }
-  .modal{width:100%;max-width:860px;background:#fff;border-radius:16px;border:1px solid var(--border);box-shadow:var(--shadow);overflow:hidden}
+  .modal-backdrop.show{display:flex}
+  .modal{
+    width:100%;max-width:920px;max-height:92vh;display:flex;flex-direction:column;
+    background:#fff;border-radius:16px;border:1px solid var(--border);box-shadow:var(--shadow);overflow:hidden
+  }
   .modal-head{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;background:#0b3ea9;color:#fff}
   .modal-title{margin:0;font-weight:800}
-  .modal-body{padding:18px}
+  .modal-body{padding:18px;overflow:auto}   /* главная прокрутка формы */
+  .modal-actions{display:flex;gap:10px;justify-content:flex-end;padding:14px 18px;border-top:1px solid var(--border);background:#f8fafc}
+
+  /* Form inside modal */
   .modal-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
   .form-row{display:flex;flex-direction:column;gap:8px}
   label{font-size:13px;font-weight:800}
@@ -77,7 +78,6 @@
     width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:10px;font:inherit;background:#fff;outline:none;transition:border .15s, box-shadow .15s;
   }
   input:focus{border-color:var(--brand);box-shadow:0 0 0 4px var(--ring)}
-  .muted{color:var(--muted);font-size:12px}
 
   .subcard{border:1px dashed var(--border);border-radius:12px;padding:12px;margin-top:14px}
   .subhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
@@ -85,15 +85,23 @@
   .row-grid.participants{grid-template-columns:1.2fr 1fr .3fr}
   .remove{background:#fff;border:1px solid var(--border);border-radius:10px;padding:10px;cursor:pointer}
   .remove:hover{filter:brightness(.98)}
-  .addline{margin-top:8px}
 
-  .modal-actions{display:flex;gap:10px;justify-content:flex-end;padding:14px 18px;border-top:1px solid var(--border);background:#f8fafc}
-  .modal-backdrop.show{display:flex}
+  /* Analytics bars */
+  .bar{display:flex;align-items:center;gap:10px;margin:10px 0}
+  .bar-label{width:34%;min-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .bar-track{flex:1;height:12px;background:#eef2ff;border-radius:999px;overflow:hidden}
+  .bar-fill{height:100%;background:linear-gradient(90deg,#4b7bff,#1e66ff);border-radius:999px}
+  .bar-value{min-width:90px;text-align:right;font-variant-numeric:tabular-nums}
 
+  @media(max-width:980px){
+    .bar-label{width:44%;min-width:140px}
+  }
   @media(max-width:720px){
+    .modal{max-width:100%;height:100vh;max-height:none;border-radius:0} /* во весь экран на телефоне */
+    .modal-body{padding:14px}
     .modal-grid{grid-template-columns:1fr}
     .row-grid,.row-grid.participants{grid-template-columns:1fr 1fr .25fr}
-    .topbar-inner{gap:10px}
+    .tabs{gap:4px}
   }
 </style>
 </head>
@@ -101,11 +109,10 @@
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand">
-      <span class="brand-badge"></span> Admin Panel
-    </div>
+    <div class="brand"><span class="brand-badge"></span> Admin Panel</div>
     <nav class="tabs" id="tabs">
       <a class="tab active" data-target="sec-home">Главная</a>
+      <a class="tab" data-target="sec-analytics">Аналитика</a>
       <a class="tab" data-target="sec-projects">Проекты</a>
       <a class="tab" data-target="sec-people">Участники</a>
       <a class="tab" data-target="sec-settings">Настройки</a>
@@ -119,48 +126,26 @@
     <div class="card">
       <div class="card-head">
         <h2 class="card-title">Список проектов (конференции)</h2>
-        <button class="btn primary icon" id="btn-new">
-          ➕ Создать проект
-        </button>
+        <button class="btn primary icon" id="btn-new">➕ Создать проект</button>
       </div>
       <div class="card-body">
-        <div style="overflow:auto">
+        <div class="table-wrap">
           <table class="table">
             <thead>
               <tr>
-                <th>#</th>
-                <th>Название</th>
-                <th>Дата начала</th>
-                <th>Дата окончания</th>
-                <th>Время начала</th>
-                <th>Время окончания</th>
-                <th>Сумма</th>
-                <th>Компания</th>
-                <th>Статус</th>
+                <th>#</th><th>Название</th><th>Дата начала</th><th>Дата окончания</th>
+                <th>Время начала</th><th>Время окончания</th><th>Сумма</th><th>Компания</th><th>Статус</th>
               </tr>
             </thead>
             <tbody id="projects-tbody">
-              <!-- примеры строк -->
               <tr>
-                <td>1</td>
-                <td>Design Summit 2025</td>
-                <td>2025-05-12</td>
-                <td>2025-05-13</td>
-                <td>09:00</td>
-                <td>18:00</td>
-                <td>12000000 UZS</td>
-                <td>BlueWave Events</td>
+                <td>1</td><td>Design Summit 2025</td><td>2025-05-12</td><td>2025-05-13</td>
+                <td>09:00</td><td>18:00</td><td>12 000 000 UZS</td><td>BlueWave Events</td>
                 <td><span class="badge">Черновик</span></td>
               </tr>
               <tr>
-                <td>2</td>
-                <td>Startup Meetup</td>
-                <td>2025-07-02</td>
-                <td>2025-07-02</td>
-                <td>18:30</td>
-                <td>21:00</td>
-                <td>3500000 UZS</td>
-                <td>Rocket Group</td>
+                <td>2</td><td>Startup Meetup</td><td>2025-07-02</td><td>2025-07-02</td>
+                <td>18:30</td><td>21:00</td><td>3 500 000 UZS</td><td>Rocket Group</td>
                 <td><span class="badge">Опубликован</span></td>
               </tr>
             </tbody>
@@ -171,26 +156,34 @@
     </div>
   </section>
 
-  <!-- Другие вкладки (плейсхолдеры) -->
+  <!-- Аналитика -->
+  <section id="sec-analytics" class="section">
+    <div class="card">
+      <div class="card-head"><h2 class="card-title">Аналитика</h2></div>
+      <div class="card-body">
+        <h3 style="margin:6px 0 10px">1) ТОП компаний по метрике (∑оценок / 365 / N)</h3>
+        <div id="bars-companies"></div>
+
+        <h3 style="margin:18px 0 10px">2) ТОП спикеров по метрике (∑оценок / 365 / N)</h3>
+        <div id="bars-speakers"></div>
+
+        <h3 style="margin:18px 0 10px">3) ТОП проектов по средней оценке</h3>
+        <div id="bars-projects"></div>
+
+        <p class="muted">Метрики — демонстрационные. Замените массивы <code>analyticsData</code> реальными данными с бэка.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Заглушки других вкладок -->
   <section id="sec-projects" class="section">
-    <div class="card">
-      <div class="card-head"><h2 class="card-title">Проекты</h2></div>
-      <div class="card-body">Тут можно будет сделать поиск/фильтры, экспорт и т.п.</div>
-    </div>
+    <div class="card"><div class="card-head"><h2 class="card-title">Проекты</h2></div><div class="card-body">Фильтры, экспорт — далее.</div></div>
   </section>
-
   <section id="sec-people" class="section">
-    <div class="card">
-      <div class="card-head"><h2 class="card-title">Участники</h2></div>
-      <div class="card-body">Сводный список людей по всем проектам.</div>
-    </div>
+    <div class="card"><div class="card-head"><h2 class="card-title">Участники</h2></div><div class="card-body">Сводный список участников.</div></div>
   </section>
-
   <section id="sec-settings" class="section">
-    <div class="card">
-      <div class="card-head"><h2 class="card-title">Настройки</h2></div>
-      <div class="card-body">Параметры SMS-провайдера, роли пользователей и др.</div>
-    </div>
+    <div class="card"><div class="card-head"><h2 class="card-title">Настройки</h2></div><div class="card-body">SMS-провайдер, роли и т.д.</div></div>
   </section>
 </main>
 
@@ -214,6 +207,17 @@
             <label class="req" for="p-company">Компания-организатор</label>
             <input id="p-company" type="text" placeholder="BlueWave Events" required>
           </div>
+
+          <!-- ДОБАВЛЕНО: адрес и телефон менеджера -->
+          <div class="form-row">
+            <label class="req" for="p-place">Место / Адрес</label>
+            <input id="p-place" type="text" placeholder="г. Ташкент, ул. Навои, 12" required>
+          </div>
+          <div class="form-row">
+            <label class="req" for="p-manager-phone">Телефон менеджера</label>
+            <input id="p-manager-phone" type="tel" placeholder="+998 (__) ___-__-__" pattern="^\\+?\\d[\\d\\s\\-()]{6,}$" required>
+          </div>
+
           <div class="form-row">
             <label class="req" for="p-date-start">Дата начала</label>
             <input id="p-date-start" type="date" required>
@@ -244,24 +248,20 @@
         <div class="subcard" id="speakers-card">
           <div class="subhead">
             <strong>Спикеры</strong>
-            <button class="btn ghost addline" type="button" id="add-speaker">+ Добавить спикера</button>
+            <button class="btn ghost" type="button" id="add-speaker">+ Добавить спикера</button>
           </div>
-          <div id="speakers-list">
-            <!-- динамические строки -->
-          </div>
-          <p class="muted">Заполните имя и тему выступления. Можно добавить несколько.</p>
+          <div id="speakers-list"></div>
+          <p class="muted">Имя и тема выступления. Можно добавить несколько.</p>
         </div>
 
         <!-- Участники -->
         <div class="subcard" id="participants-card">
           <div class="subhead">
             <strong>Участники</strong>
-            <button class="btn ghost addline" type="button" id="add-participant">+ Добавить участника</button>
+            <button class="btn ghost" type="button" id="add-participant">+ Добавить участника</button>
           </div>
-          <div id="participants-list">
-            <!-- динамические строки -->
-          </div>
-          <p class="muted">Укажите имя и номер телефона (используется для SMS с одноразовой ссылкой).</p>
+          <div id="participants-list"></div>
+          <p class="muted">Имя и номер телефона (для SMS с одноразовой ссылкой).</p>
         </div>
       </div>
 
@@ -274,117 +274,150 @@
 </div>
 
 <script>
-  // ------- навигация по вкладкам
-  const tabs = document.querySelectorAll('.tab');
-  const sections = document.querySelectorAll('.section');
-  tabs.forEach(t => t.addEventListener('click', () => {
-    tabs.forEach(x => x.classList.remove('active'));
-    t.classList.add('active');
-    const target = t.dataset.target;
-    sections.forEach(s => s.classList.toggle('active', s.id === target));
+  /* -------- Tabs -------- */
+  const tabs=document.querySelectorAll('.tab');
+  const sections=document.querySelectorAll('.section');
+  tabs.forEach(t=>t.addEventListener('click',()=>{
+    tabs.forEach(x=>x.classList.remove('active')); t.classList.add('active');
+    const target=t.dataset.target; sections.forEach(s=>s.classList.toggle('active',s.id===target));
   }));
 
-  // ------- модалка
-  const modal = document.getElementById('modal');
-  const btnNew = document.getElementById('btn-new');
-  const btnClose = document.getElementById('close-modal');
-  const btnCancel = document.getElementById('cancel');
+  /* -------- Modal -------- */
+  const modal=document.getElementById('modal');
+  const btnNew=document.getElementById('btn-new');
+  const btnClose=document.getElementById('close-modal');
+  const btnCancel=document.getElementById('cancel');
+  const openModal=()=>{ modal.classList.add('show'); if(!document.querySelector('.speaker-row')) addSpeakerRow(); if(!document.querySelector('.participant-row')) addParticipantRow(); document.body.style.overflow='hidden'; };
+  const closeModal=()=>{ modal.classList.remove('show'); document.body.style.overflow=''; };
+  btnNew.addEventListener('click',openModal);
+  btnClose.addEventListener('click',closeModal);
+  btnCancel.addEventListener('click',closeModal);
+  modal.addEventListener('click',(e)=>{ if(e.target===modal) closeModal(); });
 
-  const openModal = () => {
-    modal.classList.add('show');
-    // по умолчанию одна строка спикера и участника
-    if (!document.querySelector('.speaker-row')) addSpeakerRow();
-    if (!document.querySelector('.participant-row')) addParticipantRow();
-  };
-  const closeModal = () => modal.classList.remove('show');
-
-  btnNew.addEventListener('click', openModal);
-  btnClose.addEventListener('click', closeModal);
-  btnCancel.addEventListener('click', closeModal);
-  modal.addEventListener('click', (e)=>{ if(e.target===modal) closeModal(); });
-
-  // ------- динамические строки: спикеры
-  const speakersList = document.getElementById('speakers-list');
-  document.getElementById('add-speaker').addEventListener('click', addSpeakerRow);
+  /* -------- Dynamic rows -------- */
+  const speakersList=document.getElementById('speakers-list');
+  const participantsList=document.getElementById('participants-list');
+  document.getElementById('add-speaker').addEventListener('click',addSpeakerRow);
+  document.getElementById('add-participant').addEventListener('click',addParticipantRow);
 
   function addSpeakerRow(nameVal='', topicVal=''){
-    const row = document.createElement('div');
-    row.className = 'row-grid speaker-row';
-    row.innerHTML = `
+    const row=document.createElement('div');
+    row.className='row-grid speaker-row';
+    row.innerHTML=`
       <input type="text" placeholder="Имя спикера" value="${nameVal}">
       <input type="text" placeholder="Тема выступления" value="${topicVal}">
-      <button class="remove" type="button" aria-label="Удалить">🗑</button>
-    `;
-    row.querySelector('.remove').onclick = ()=> row.remove();
+      <button class="remove" type="button" aria-label="Удалить">🗑</button>`;
+    row.querySelector('.remove').onclick=()=>row.remove();
     speakersList.appendChild(row);
   }
-
-  // ------- динамические строки: участники
-  const participantsList = document.getElementById('participants-list');
-  document.getElementById('add-participant').addEventListener('click', addParticipantRow);
-
   function addParticipantRow(nameVal='', phoneVal=''){
-    const row = document.createElement('div');
-    row.className = 'row-grid participants participant-row';
-    row.innerHTML = `
+    const row=document.createElement('div');
+    row.className='row-grid participants participant-row';
+    row.innerHTML=`
       <input type="text" placeholder="Имя участника" value="${nameVal}">
-      <input type="tel" placeholder="+998 (__) ___-__-__" value="${phoneVal}" pattern="^\\+?\\d[\\d\\s\\-()]{6,}$" title="Введите корректный номер">
-      <button class="remove" type="button" aria-label="Удалить">🗑</button>
-    `;
-    row.querySelector('.remove').onclick = ()=> row.remove();
+      <input type="tel" placeholder="+998 (__) ___-__-__" value="${phoneVal}" pattern="^\\+?\\d[\\d\\s\\-()]{6,}$">
+      <button class="remove" type="button" aria-label="Удалить">🗑</button>`;
+    row.querySelector('.remove').onclick=()=>row.remove();
     participantsList.appendChild(row);
   }
 
-  // ------- «сохранение» (пока демонстрация верстки)
-  const form = document.getElementById('project-form');
-  form.addEventListener('submit', (e)=>{
+  /* -------- Demo save (adds row to table) -------- */
+  const form=document.getElementById('project-form');
+  form.addEventListener('submit',(e)=>{
     e.preventDefault();
-    // соберём данные (для будущего API)
-    const payload = {
-      name: document.getElementById('p-name').value.trim(),
-      company: document.getElementById('p-company').value.trim(),
-      date_start: document.getElementById('p-date-start').value,
-      date_end: document.getElementById('p-date-end').value,
-      time_start: document.getElementById('p-time-start').value,
-      time_end: document.getElementById('p-time-end').value,
-      amount: document.getElementById('p-amount').value,
-      status: document.getElementById('p-status').value.trim(),
-      speakers: Array.from(document.querySelectorAll('.speaker-row')).map(r=>({
-        name: r.children[0].value.trim(),
-        topic: r.children[1].value.trim()
-      })).filter(x=>x.name||x.topic),
-      participants: Array.from(document.querySelectorAll('.participant-row')).map(r=>({
-        name: r.children[0].value.trim(),
-        phone: r.children[1].value.trim()
-      })).filter(x=>x.name||x.phone),
+    const payload={
+      name:val('#p-name'), company:val('#p-company'), place:val('#p-place'), manager_phone:val('#p-manager-phone'),
+      date_start:val('#p-date-start'), date_end:val('#p-date-end'),
+      time_start:val('#p-time-start'), time_end:val('#p-time-end'),
+      amount:val('#p-amount'), status:val('#p-status'),
+      speakers:rows('.speaker-row'), participants:rows('.participant-row')
     };
-
-    // Добавим строку в таблицу (визуально)
-    const tbody = document.getElementById('projects-tbody');
-    const idx = tbody.children.length + 1;
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td>${idx}</td>
-      <td>${payload.name || '—'}</td>
-      <td>${payload.date_start || '—'}</td>
-      <td>${payload.date_end || '—'}</td>
-      <td>${payload.time_start || '—'}</td>
-      <td>${payload.time_end || '—'}</td>
-      <td>${payload.amount ? `${Number(payload.amount).toLocaleString('ru-RU')} UZS` : '—'}</td>
-      <td>${payload.company || '—'}</td>
-      <td><span class="badge">${payload.status || 'Черновик'}</span></td>
-    `;
-    tbody.appendChild(tr);
-
-    // Очистка формы и закрытие модалки
-    form.reset();
-    speakersList.innerHTML = '';
-    participantsList.innerHTML = '';
-    closeModal();
-
-    // На реальном бэке: отправить payload через fetch('/admin/projects', {method:'POST', body: JSON.stringify(payload)})
+    addProjectRow(payload); closeModal(); form.reset(); speakersList.innerHTML=''; participantsList.innerHTML='';
     console.log('PROJECT_PAYLOAD', payload);
   });
+  const val=sel=>document.querySelector(sel).value.trim();
+  const rows=sel=>Array.from(document.querySelectorAll(sel)).map(r=>({a:r.children[0].value.trim(),b:r.children[1].value.trim()}));
+
+  function addProjectRow(p){
+    const tbody=document.getElementById('projects-tbody');
+    const idx=tbody.children.length+1;
+    const tr=document.createElement('tr');
+    tr.innerHTML=`
+      <td>${idx}</td><td>${p.name||'—'}</td>
+      <td>${p.date_start||'—'}</td><td>${p.date_end||'—'}</td>
+      <td>${p.time_start||'—'}</td><td>${p.time_end||'—'}</td>
+      <td>${p.amount?Number(p.amount).toLocaleString('ru-RU')+' UZS':'—'}</td>
+      <td>${p.company||'—'}</td>
+      <td><span class="badge">${p.status||'Черновик'}</span></td>`;
+    tbody.appendChild(tr);
+  }
+
+  /* -------- Analytics (demo data + bars) -------- */
+  const analyticsData = {
+    companies: [
+      { company: 'BlueWave Events', ratings: [8,9,7,9,8] },
+      { company: 'Rocket Group',   ratings: [7,6,8,8,7,9] },
+      { company: 'Nova Media',     ratings: [9,9,8,9] }
+    ],
+    speakers: [
+      { speaker: 'Alice Kim', ratings: [9,8,9,10] },
+      { speaker: 'Boris Ivanov', ratings: [7,7,8] },
+      { speaker: 'Chen Li', ratings: [8,9,9,9,8] }
+    ],
+    projects: [
+      { project: 'Design Summit 2025', ratings: [8,9,8,9,7] },
+      { project: 'Startup Meetup', ratings: [7,8,8,7] },
+      { project: 'AI Expo', ratings: [9,9,9] }
+    ]
+  };
+
+  function metric(sum, n){ return n ? (sum/365)/n : 0; } // как просили
+  function avg(arr){ return arr.length? arr.reduce((a,b)=>a+b,0)/arr.length : 0; }
+
+  function renderBars(containerId, rows, labelKey, valueFn, valueFmt='0.00'){
+    const cont=document.getElementById(containerId);
+    cont.innerHTML='';
+    if(!rows.length){ cont.textContent='Нет данных'; return; }
+    const vals=rows.map(valueFn);
+    const max=Math.max(...vals,1);
+    rows
+      .map((r,i)=>({r,val:vals[i]}))
+      .sort((a,b)=>b.val-a.val)
+      .forEach(({r,val})=>{
+        const wrap=document.createElement('div'); wrap.className='bar';
+        const label=document.createElement('div'); label.className='bar-label'; label.textContent=r[labelKey];
+        const track=document.createElement('div'); track.className='bar-track';
+        const fill=document.createElement('div'); fill.className='bar-fill'; fill.style.width=(val/max*100).toFixed(1)+'%';
+        const value=document.createElement('div'); value.className='bar-value'; value.textContent=(typeof valueFmt==='function'? valueFmt(val): val.toFixed(2));
+        track.appendChild(fill); wrap.append(label, track, value); cont.appendChild(wrap);
+      });
+  }
+
+  function recalcAnalytics(){
+    // 1) Компании
+    renderBars(
+      'bars-companies',
+      analyticsData.companies,
+      'company',
+      (row)=> metric(row.ratings.reduce((a,b)=>a+b,0), row.ratings.length)
+    );
+    // 2) Спикеры
+    renderBars(
+      'bars-speakers',
+      analyticsData.speakers,
+      'speaker',
+      (row)=> metric(row.ratings.reduce((a,b)=>a+b,0), row.ratings.length)
+    );
+    // 3) Проекты — средняя оценка
+    renderBars(
+      'bars-projects',
+      analyticsData.projects,
+      'project',
+      (row)=> avg(row.ratings),
+      (v)=> v.toFixed(2)
+    );
+  }
+  recalcAnalytics();
 </script>
 </body>
 </html>
