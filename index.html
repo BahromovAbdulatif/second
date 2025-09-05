@@ -8,100 +8,106 @@
   :root{
     --bg:#f3f6fb; --panel:#fff; --ink:#0f172a; --muted:#64748b;
     --brand:#1e66ff; --brand-600:#1557df; --ring:#c7d7ff; --border:#e5e7eb;
-    --ok:#16a34a; --warn:#f59e0b; --danger:#ef4444;
-    --shadow:0 10px 25px rgba(2,6,23,.06), 0 2px 6px rgba(2,6,23,.04);
-    --radius:14px;
+    --shadow:0 8px 18px rgba(2,6,23,.06), 0 2px 6px rgba(2,6,23,.04);
+    --radius:12px;
   }
   *{box-sizing:border-box}
   html,body{height:100%}
   body{
     margin:0;background:linear-gradient(180deg,#e9f0ff 0%, #f6f8ff 120%);
-    font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;color:var(--ink)
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;
+    font-size:14px; line-height:1.4; color:var(--ink)
   }
   a{color:inherit;text-decoration:none}
 
   /* Topbar */
-  .topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:saturate(1.2) blur(6px);border-bottom:1px solid var(--border)}
-  .topbar-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
-  .brand{display:flex;gap:10px;align-items:center;font-weight:800}
-  .brand-badge{width:28px;height:28px;border-radius:8px;background:#0b3ea9}
-  .tabs{display:flex;gap:6px;flex-wrap:wrap}
-  .tab{padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:600;color:#1f2a5a}
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.9);backdrop-filter:saturate(1.2) blur(6px);border-bottom:1px solid var(--border)}
+  .topbar-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:10px 16px}
+  .brand{display:flex;gap:8px;align-items:center;font-weight:800}
+  .brand-badge{width:22px;height:22px;border-radius:6px;background:#0b3ea9}
+  .tabs{display:flex;gap:4px;flex-wrap:wrap}
+  .tab{padding:8px 10px;border-radius:9px;cursor:pointer;font-weight:700;color:#1f2a5a;font-size:13px}
   .tab.active{background:#eef2ff;color:#0b3ea9}
 
   /* Layout */
-  .wrap{max-width:1200px;margin:24px auto;padding:0 20px}
+  .wrap{max-width:1280px;margin:18px auto;padding:0 16px}
   .card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
-  .card-head{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid var(--border)}
-  .card-title{margin:0;font-size:18px;font-weight:800}
-  .card-body{padding:18px 20px}
-  .btn{appearance:none;border:0;border-radius:12px;padding:10px 14px;font-weight:700;cursor:pointer;transition:filter .15s, transform .03s}
+  .card-head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--border)}
+  .card-title{margin:0;font-size:16px;font-weight:800}
+  .card-body{padding:12px 14px}
+  .btn{appearance:none;border:0;border-radius:10px;padding:8px 12px;font-weight:800;cursor:pointer;transition:filter .15s, transform .03s;font-size:13px}
   .btn:active{transform:translateY(1px)}
-  .btn.primary{background:var(--brand);color:#fff;box-shadow:0 8px 18px rgba(30,102,255,.18)}
+  .btn.primary{background:var(--brand);color:#fff;box-shadow:0 6px 14px rgba(30,102,255,.18)}
   .btn.ghost{background:#eef2ff;color:#1f2a5a}
-  .btn.icon{display:inline-flex;align-items:center;gap:8px}
+  .btn.icon{display:inline-flex;align-items:center;gap:6px}
   .muted{color:var(--muted);font-size:12px}
 
   /* Table */
   .table-wrap{overflow:auto}
   .table{width:100%;border-collapse:separate;border-spacing:0;min-width:900px}
-  .table th,.table td{padding:12px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top;font-size:14px}
+  .table th,.table td{padding:10px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top;font-size:13px}
   .table th{color:#334155;background:#f8fafc;font-weight:800}
   .table tr:hover td{background:#fafbff}
-  .badge{display:inline-block;padding:4px 8px;border-radius:999px;font-size:12px;background:#eef2ff;color:#0b3ea9;font-weight:700}
+  .badge{display:inline-block;padding:3px 7px;border-radius:999px;font-size:11px;background:#eef2ff;color:#0b3ea9;font-weight:800}
 
   /* Sections */
   .section{display:none}
   .section.active{display:block}
 
-  /* Modal (responsive + scrollable) */
+  /* -------- Modal (GRID + компакт) -------- */
   .modal-backdrop{
-    position:fixed;inset:0;background:rgba(2,6,23,.5);
-    display:none;align-items:center;justify-content:center;padding:20px;z-index:100;
+    position: fixed; inset: 0; background: rgba(2,6,23,.5);
+    display: none; align-items: center; justify-content: center;
+    padding: 12px; z-index: 100;
   }
-  .modal-backdrop.show{display:flex}
+  .modal-backdrop.show{ display:flex; }
+
+  /* ШИРЕ и НИЖЕ высота: 1100px макс ширины и 80dvh высоты */
   .modal{
-    width:100%;max-width:920px;max-height:92vh;display:flex;flex-direction:column;
-    background:#fff;border-radius:16px;border:1px solid var(--border);box-shadow:var(--shadow);overflow:hidden
+    width: min(1100px, 96vw);
+    height: 80dvh;                    /* ниже, чтобы точно появлялся скролл */
+    display: grid; grid-template-rows: auto 1fr auto;
+    background:#fff; border-radius:12px; border:1px solid var(--border); box-shadow:var(--shadow); overflow:hidden;
   }
-  .modal-head{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;background:#0b3ea9;color:#fff}
-  .modal-title{margin:0;font-weight:800}
-  .modal-body{padding:18px;overflow:auto}   /* главная прокрутка формы */
-  .modal-actions{display:flex;gap:10px;justify-content:flex-end;padding:14px 18px;border-top:1px solid var(--border);background:#f8fafc}
+  .modal-head{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:#0b3ea9;color:#fff}
+  .modal-title{margin:0;font-weight:900;font-size:15px}
+  .modal-body{
+    overflow:auto; -webkit-overflow-scrolling:touch; overscroll-behavior:contain;
+    padding:12px; gap:10px;
+  }
+  .modal-actions{display:flex;gap:8px;justify-content:flex-end;padding:10px 12px;border-top:1px solid var(--border);background:#f8fafc}
 
-  /* Form inside modal */
-  .modal-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-  .form-row{display:flex;flex-direction:column;gap:8px}
-  label{font-size:13px;font-weight:800}
-  .req::after{content:" *";color:var(--danger)}
+  /* Form (компактнее + 3 колонки на широких экранах) */
+  .modal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .form-row{display:flex;flex-direction:column;gap:6px}
+  label{font-size:12px;font-weight:900}
+  .req::after{content:" *";color:#ef4444}
   input[type="text"],input[type="date"],input[type="time"],input[type="number"],input[type="tel"]{
-    width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:10px;font:inherit;background:#fff;outline:none;transition:border .15s, box-shadow .15s;
+    width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:8px;font:inherit;background:#fff;outline:none;transition:border .15s, box-shadow .15s;font-size:13px
   }
-  input:focus{border-color:var(--brand);box-shadow:0 0 0 4px var(--ring)}
+  input:focus{border-color:var(--brand);box-shadow:0 0 0 3px var(--ring)}
 
-  .subcard{border:1px dashed var(--border);border-radius:12px;padding:12px;margin-top:14px}
-  .subhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
-  .row-grid{display:grid;grid-template-columns:1.2fr 1fr .3fr;gap:10px;margin-bottom:8px}
-  .row-grid.participants{grid-template-columns:1.2fr 1fr .3fr}
-  .remove{background:#fff;border:1px solid var(--border);border-radius:10px;padding:10px;cursor:pointer}
+  .subcard{border:1px dashed var(--border);border-radius:10px;padding:10px;margin-top:10px}
+  .subhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+  .row-grid{display:grid;grid-template-columns:1.2fr 1fr .22fr;gap:8px;margin-bottom:8px}
+  .row-grid.participants{grid-template-columns:1.2fr 1fr .22fr}
+  .remove{background:#fff;border:1px solid var(--border);border-radius:8px;padding:6px;cursor:pointer;font-size:14px}
   .remove:hover{filter:brightness(.98)}
 
-  /* Analytics bars */
-  .bar{display:flex;align-items:center;gap:10px;margin:10px 0}
-  .bar-label{width:34%;min-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .bar-track{flex:1;height:12px;background:#eef2ff;border-radius:999px;overflow:hidden}
+  /* Analytics bars (компактнее) */
+  .bar{display:flex;align-items:center;gap:8px;margin:8px 0}
+  .bar-label{width:38%;min-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px}
+  .bar-track{flex:1;height:10px;background:#eef2ff;border-radius:999px;overflow:hidden}
   .bar-fill{height:100%;background:linear-gradient(90deg,#4b7bff,#1e66ff);border-radius:999px}
-  .bar-value{min-width:90px;text-align:right;font-variant-numeric:tabular-nums}
+  .bar-value{min-width:70px;text-align:right;font-variant-numeric:tabular-nums;font-size:12px}
 
-  @media(max-width:980px){
-    .bar-label{width:44%;min-width:140px}
-  }
+  @media(max-width:1100px){ .modal-grid{grid-template-columns:repeat(2,1fr)} }
   @media(max-width:720px){
-    .modal{max-width:100%;height:100vh;max-height:none;border-radius:0} /* во весь экран на телефоне */
-    .modal-body{padding:14px}
-    .modal-grid{grid-template-columns:1fr}
-    .row-grid,.row-grid.participants{grid-template-columns:1fr 1fr .25fr}
-    .tabs{gap:4px}
+    .modal{ width:100%; height:100dvh; border-radius:0 }
+    .modal-body{ padding:10px }
+    .modal-grid{ grid-template-columns:1fr }
+    .row-grid,.row-grid.participants{ grid-template-columns:1fr 1fr .22fr }
+    .tabs{ gap:3px }
   }
 </style>
 </head>
@@ -151,7 +157,7 @@
             </tbody>
           </table>
         </div>
-        <p class="muted" style="margin-top:8px">Нажмите «Создать проект», чтобы добавить конференцию, спикеров и участников.</p>
+        <p class="muted" style="margin-top:6px">Нажмите «Создать проект», чтобы добавить конференцию, спикеров и участников.</p>
       </div>
     </div>
   </section>
@@ -161,21 +167,21 @@
     <div class="card">
       <div class="card-head"><h2 class="card-title">Аналитика</h2></div>
       <div class="card-body">
-        <h3 style="margin:6px 0 10px">1) ТОП компаний по метрике (∑оценок / 365 / N)</h3>
+        <h3 style="margin:4px 0 8px;font-size:15px">1) ТОП компаний по метрике (∑оценок / 365 / N)</h3>
         <div id="bars-companies"></div>
 
-        <h3 style="margin:18px 0 10px">2) ТОП спикеров по метрике (∑оценок / 365 / N)</h3>
+        <h3 style="margin:14px 0 8px;font-size:15px">2) ТОП спикеров по метрике (∑оценок / 365 / N)</h3>
         <div id="bars-speakers"></div>
 
-        <h3 style="margin:18px 0 10px">3) ТОП проектов по средней оценке</h3>
+        <h3 style="margin:14px 0 8px;font-size:15px">3) ТОП проектов по средней оценке</h3>
         <div id="bars-projects"></div>
 
-        <p class="muted">Метрики — демонстрационные. Замените массивы <code>analyticsData</code> реальными данными с бэка.</p>
+        <p class="muted">Данные — пример. Подключите ваш API и подставьте реальные цифры.</p>
       </div>
     </div>
   </section>
 
-  <!-- Заглушки других вкладок -->
+  <!-- Заглушки -->
   <section id="sec-projects" class="section">
     <div class="card"><div class="card-head"><h2 class="card-title">Проекты</h2></div><div class="card-body">Фильтры, экспорт — далее.</div></div>
   </section>
@@ -192,7 +198,7 @@
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <div class="modal-head">
       <h3 class="modal-title" id="modal-title">Создать проект (конференцию)</h3>
-      <button class="btn ghost" id="close-modal">✕</button>
+      <button class="btn ghost" id="close-modal" aria-label="Закрыть">✕</button>
     </div>
 
     <form id="project-form">
@@ -201,23 +207,21 @@
         <div class="modal-grid">
           <div class="form-row">
             <label class="req" for="p-name">Название</label>
-            <input id="p-name" type="text" placeholder="Например: Design Summit 2025" required>
+            <input id="p-name" type="text" placeholder="Design Summit 2025" required>
           </div>
           <div class="form-row">
             <label class="req" for="p-company">Компания-организатор</label>
             <input id="p-company" type="text" placeholder="BlueWave Events" required>
           </div>
-
-          <!-- ДОБАВЛЕНО: адрес и телефон менеджера -->
           <div class="form-row">
             <label class="req" for="p-place">Место / Адрес</label>
             <input id="p-place" type="text" placeholder="г. Ташкент, ул. Навои, 12" required>
           </div>
+
           <div class="form-row">
             <label class="req" for="p-manager-phone">Телефон менеджера</label>
-            <input id="p-manager-phone" type="tel" placeholder="+998 (__) ___-__-__" pattern="^\\+?\\d[\\d\\s\\-()]{6,}$" required>
+            <input id="p-manager-phone" type="tel" inputmode="tel" placeholder="+998 (__) ___-__-__" pattern="^\\+?\\d[\\d\\s\\-()]{6,}$" required>
           </div>
-
           <div class="form-row">
             <label class="req" for="p-date-start">Дата начала</label>
             <input id="p-date-start" type="date" required>
@@ -226,6 +230,7 @@
             <label class="req" for="p-date-end">Дата окончания</label>
             <input id="p-date-end" type="date" required>
           </div>
+
           <div class="form-row">
             <label class="req" for="p-time-start">Время начала</label>
             <input id="p-time-start" type="time" required>
@@ -234,6 +239,7 @@
             <label class="req" for="p-time-end">Время окончания</label>
             <input id="p-time-end" type="time" required>
           </div>
+
           <div class="form-row">
             <label class="req" for="p-amount">Сумма (UZS)</label>
             <input id="p-amount" type="number" min="0" step="1000" placeholder="0" required>
@@ -274,7 +280,7 @@
 </div>
 
 <script>
-  /* -------- Tabs -------- */
+  /* ---------- Tabs ---------- */
   const tabs=document.querySelectorAll('.tab');
   const sections=document.querySelectorAll('.section');
   tabs.forEach(t=>t.addEventListener('click',()=>{
@@ -282,23 +288,52 @@
     const target=t.dataset.target; sections.forEach(s=>s.classList.toggle('active',s.id===target));
   }));
 
-  /* -------- Modal -------- */
-  const modal=document.getElementById('modal');
-  const btnNew=document.getElementById('btn-new');
-  const btnClose=document.getElementById('close-modal');
-  const btnCancel=document.getElementById('cancel');
-  const openModal=()=>{ modal.classList.add('show'); if(!document.querySelector('.speaker-row')) addSpeakerRow(); if(!document.querySelector('.participant-row')) addParticipantRow(); document.body.style.overflow='hidden'; };
-  const closeModal=()=>{ modal.classList.remove('show'); document.body.style.overflow=''; };
-  btnNew.addEventListener('click',openModal);
-  btnClose.addEventListener('click',closeModal);
-  btnCancel.addEventListener('click',closeModal);
-  modal.addEventListener('click',(e)=>{ if(e.target===modal) closeModal(); });
+  /* ---------- Demo Analytics Data & Render (компакт) ---------- */
+  const analyticsData = {
+    companies: [
+      { company: 'BlueWave Events', ratings: [8,9,7,9,8] },
+      { company: 'Rocket Group',   ratings: [7,6,8,8,7,9] },
+      { company: 'Nova Media',     ratings: [9,9,8,9] }
+    ],
+    speakers: [
+      { speaker: 'Alice Kim', ratings: [9,8,9,10] },
+      { speaker: 'Boris Ivanov', ratings: [7,7,8] },
+      { speaker: 'Chen Li', ratings: [8,9,9,9,8] }
+    ],
+    projects: [
+      { project: 'Design Summit 2025', ratings: [8,9,8,9,7] },
+      { project: 'Startup Meetup', ratings: [7,8,8,7] },
+      { project: 'AI Expo', ratings: [9,9,9] }
+    ]
+  };
+  const metric=(sum,n)=> n? (sum/365)/n : 0;
+  const avg=arr=> arr.length? arr.reduce((a,b)=>a+b,0)/arr.length : 0;
+  function renderBars(containerId, rows, labelKey, valueFn){
+    const cont=document.getElementById(containerId);
+    cont.innerHTML='';
+    if(!rows.length){ cont.textContent='Нет данных'; return; }
+    const vals=rows.map(valueFn), max=Math.max(...vals,1);
+    rows.map((r,i)=>({r,val:vals[i]})).sort((a,b)=>b.val-a.val).forEach(({r,val})=>{
+      const wrap=document.createElement('div'); wrap.className='bar';
+      const label=document.createElement('div'); label.className='bar-label'; label.textContent=r[labelKey];
+      const track=document.createElement('div'); track.className='bar-track';
+      const fill=document.createElement('div'); fill.className='bar-fill'; fill.style.width=(val/max*100).toFixed(1)+'%';
+      const v=document.createElement('div'); v.className='bar-value'; v.textContent=val.toFixed(3);
+      track.appendChild(fill); wrap.append(label, track, v); cont.appendChild(wrap);
+    });
+  }
+  function recalcAnalytics(){
+    renderBars('bars-companies', analyticsData.companies, 'company', (row)=>metric(row.ratings.reduce((a,b)=>a+b,0), row.ratings.length));
+    renderBars('bars-speakers',  analyticsData.speakers,  'speaker', (row)=>metric(row.ratings.reduce((a,b)=>a+b,0), row.ratings.length));
+    renderBars('bars-projects',  analyticsData.projects,  'project', (row)=>avg(row.ratings));
+  }
+  recalcAnalytics();
 
-  /* -------- Dynamic rows -------- */
+  /* ---------- Dynamic rows ---------- */
   const speakersList=document.getElementById('speakers-list');
   const participantsList=document.getElementById('participants-list');
-  document.getElementById('add-speaker').addEventListener('click',addSpeakerRow);
-  document.getElementById('add-participant').addEventListener('click',addParticipantRow);
+  document.getElementById('add-speaker').addEventListener('click', addSpeakerRow);
+  document.getElementById('add-participant').addEventListener('click', addParticipantRow);
 
   function addSpeakerRow(nameVal='', topicVal=''){
     const row=document.createElement('div');
@@ -315,24 +350,52 @@
     row.className='row-grid participants participant-row';
     row.innerHTML=`
       <input type="text" placeholder="Имя участника" value="${nameVal}">
-      <input type="tel" placeholder="+998 (__) ___-__-__" value="${phoneVal}" pattern="^\\+?\\d[\\d\\s\\-()]{6,}$">
+      <input type="tel" placeholder="+998 (__) ___-__-__" value="${phoneVal}" pattern="^\\+?\\d[\\d\\s\\-()]{6,}$" title="Введите корректный номер">
       <button class="remove" type="button" aria-label="Удалить">🗑</button>`;
     row.querySelector('.remove').onclick=()=>row.remove();
     participantsList.appendChild(row);
   }
 
-  /* -------- Demo save (adds row to table) -------- */
+  /* ---------- Modal open/close (grid + scroll-safe) ---------- */
+  const modal     = document.getElementById('modal');       // backdrop
+  const btnNew    = document.getElementById('btn-new');
+  const btnClose  = document.getElementById('close-modal');
+  const btnCancel = document.getElementById('cancel');
+
+  function openModal(){
+    modal.classList.add('show');
+    if(!document.querySelector('.speaker-row'))     addSpeakerRow();
+    if(!document.querySelector('.participant-row')) addParticipantRow();
+    // блокируем прокрутку ФОНА только у body (не у html)
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(){
+    modal.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+  btnNew.addEventListener('click', openModal);
+  btnClose.addEventListener('click', closeModal);
+  btnCancel.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e)=>{ if(e.target===modal) closeModal(); });
+  document.addEventListener('keydown',(e)=>{ if(e.key==='Escape' && modal.classList.contains('show')) closeModal(); });
+
+  /* ---------- Demo "save": add row to table ---------- */
   const form=document.getElementById('project-form');
   form.addEventListener('submit',(e)=>{
     e.preventDefault();
     const payload={
-      name:val('#p-name'), company:val('#p-company'), place:val('#p-place'), manager_phone:val('#p-manager-phone'),
+      name:val('#p-name'), company:val('#p-company'),
+      place:val('#p-place'), manager_phone:val('#p-manager-phone'),
       date_start:val('#p-date-start'), date_end:val('#p-date-end'),
       time_start:val('#p-time-start'), time_end:val('#p-time-end'),
       amount:val('#p-amount'), status:val('#p-status'),
       speakers:rows('.speaker-row'), participants:rows('.participant-row')
     };
-    addProjectRow(payload); closeModal(); form.reset(); speakersList.innerHTML=''; participantsList.innerHTML='';
+    addProjectRow(payload);
+    closeModal();
+    form.reset();
+    speakersList.innerHTML='';
+    participantsList.innerHTML='';
     console.log('PROJECT_PAYLOAD', payload);
   });
   const val=sel=>document.querySelector(sel).value.trim();
@@ -351,73 +414,6 @@
       <td><span class="badge">${p.status||'Черновик'}</span></td>`;
     tbody.appendChild(tr);
   }
-
-  /* -------- Analytics (demo data + bars) -------- */
-  const analyticsData = {
-    companies: [
-      { company: 'BlueWave Events', ratings: [8,9,7,9,8] },
-      { company: 'Rocket Group',   ratings: [7,6,8,8,7,9] },
-      { company: 'Nova Media',     ratings: [9,9,8,9] }
-    ],
-    speakers: [
-      { speaker: 'Alice Kim', ratings: [9,8,9,10] },
-      { speaker: 'Boris Ivanov', ratings: [7,7,8] },
-      { speaker: 'Chen Li', ratings: [8,9,9,9,8] }
-    ],
-    projects: [
-      { project: 'Design Summit 2025', ratings: [8,9,8,9,7] },
-      { project: 'Startup Meetup', ratings: [7,8,8,7] },
-      { project: 'AI Expo', ratings: [9,9,9] }
-    ]
-  };
-
-  function metric(sum, n){ return n ? (sum/365)/n : 0; } // как просили
-  function avg(arr){ return arr.length? arr.reduce((a,b)=>a+b,0)/arr.length : 0; }
-
-  function renderBars(containerId, rows, labelKey, valueFn, valueFmt='0.00'){
-    const cont=document.getElementById(containerId);
-    cont.innerHTML='';
-    if(!rows.length){ cont.textContent='Нет данных'; return; }
-    const vals=rows.map(valueFn);
-    const max=Math.max(...vals,1);
-    rows
-      .map((r,i)=>({r,val:vals[i]}))
-      .sort((a,b)=>b.val-a.val)
-      .forEach(({r,val})=>{
-        const wrap=document.createElement('div'); wrap.className='bar';
-        const label=document.createElement('div'); label.className='bar-label'; label.textContent=r[labelKey];
-        const track=document.createElement('div'); track.className='bar-track';
-        const fill=document.createElement('div'); fill.className='bar-fill'; fill.style.width=(val/max*100).toFixed(1)+'%';
-        const value=document.createElement('div'); value.className='bar-value'; value.textContent=(typeof valueFmt==='function'? valueFmt(val): val.toFixed(2));
-        track.appendChild(fill); wrap.append(label, track, value); cont.appendChild(wrap);
-      });
-  }
-
-  function recalcAnalytics(){
-    // 1) Компании
-    renderBars(
-      'bars-companies',
-      analyticsData.companies,
-      'company',
-      (row)=> metric(row.ratings.reduce((a,b)=>a+b,0), row.ratings.length)
-    );
-    // 2) Спикеры
-    renderBars(
-      'bars-speakers',
-      analyticsData.speakers,
-      'speaker',
-      (row)=> metric(row.ratings.reduce((a,b)=>a+b,0), row.ratings.length)
-    );
-    // 3) Проекты — средняя оценка
-    renderBars(
-      'bars-projects',
-      analyticsData.projects,
-      'project',
-      (row)=> avg(row.ratings),
-      (v)=> v.toFixed(2)
-    );
-  }
-  recalcAnalytics();
 </script>
 </body>
 </html>
