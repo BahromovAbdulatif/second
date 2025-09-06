@@ -16,7 +16,7 @@
   body{
     margin:0;background:linear-gradient(180deg,#e9f0ff 0%, #f6f8ff 120%);
     font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;
-    font-size:14px; line-height:1.4; color:var(--ink)
+    font-size:14px; line-height:1.45; color:var(--ink)
   }
   a{color:inherit;text-decoration:none}
 
@@ -25,16 +25,16 @@
   .topbar-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:10px 16px}
   .brand{display:flex;gap:8px;align-items:center;font-weight:800}
   .brand-badge{width:22px;height:22px;border-radius:6px;background:#0b3ea9}
-  .tabs{display:flex;gap:4px;flex-wrap:wrap}
-  .tab{padding:8px 10px;border-radius:9px;cursor:pointer;font-weight:700;color:#1f2a5a;font-size:13px}
+  .tabs{display:flex;gap:6px;flex-wrap:wrap}
+  .tab{padding:8px 12px;border-radius:10px;cursor:pointer;font-weight:700;color:#1f2a5a;font-size:13px}
   .tab.active{background:#eef2ff;color:#0b3ea9}
 
   /* Layout */
   .wrap{max-width:1280px;margin:18px auto;padding:0 16px}
   .card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
-  .card-head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--border)}
-  .card-title{margin:0;font-size:16px;font-weight:800}
-  .card-body{padding:12px 14px}
+  .card-head{display:flex;align-items:center;justify-content:space-between;padding:14px;border-bottom:1px solid var(--border)}
+  .card-title{margin:0;font-size:18px;font-weight:800}
+  .card-body{padding:14px}
   .btn{appearance:none;border:0;border-radius:10px;padding:8px 12px;font-weight:800;cursor:pointer;transition:filter .15s, transform .03s;font-size:13px}
   .btn:active{transform:translateY(1px)}
   .btn.primary{background:var(--brand);color:#fff;box-shadow:0 6px 14px rgba(30,102,255,.18)}
@@ -63,7 +63,6 @@
     padding: 12px; z-index: 100;
   }
   .modal-backdrop.show{ display:flex; }
-
   .modal{
     width: min(1100px, 96vw);
     height: 80dvh;                 /* гарантированный внутренний скролл */
@@ -76,7 +75,7 @@
   .modal-body{overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:12px}
   .modal-actions{display:flex;gap:8px;justify-content:flex-end;padding:10px 12px;border-top:1px solid var(--border);background:#f8fafc}
 
-  /* Create-project form (compact) */
+  /* Create-project form */
   .modal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
   .form-row{display:flex;flex-direction:column;gap:6px}
   label{font-size:12px;font-weight:900}
@@ -93,7 +92,7 @@
   .remove{background:#fff;border:1px solid var(--border);border-radius:8px;padding:6px;cursor:pointer;font-size:14px}
   .remove:hover{filter:brightness(.98)}
 
-  /* Project View modal specifics */
+  /* Project View modal */
   .pv-grid{display:grid;grid-template-columns:1fr;gap:10px}
   .pv-2col{display:grid;grid-template-columns:1fr 1fr;gap:10px}
   .pv-card{border:1px solid var(--border);border-radius:10px;padding:10px}
@@ -101,7 +100,6 @@
   .pv-row{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px}
   .pv-row input{width:100%}
   .pv-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:8px}
-
   .ppl-controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
   .ppl-table{width:100%;border-collapse:separate;border-spacing:0;min-width:900px}
   .ppl-table th,.ppl-table td{padding:8px;border-bottom:1px solid var(--border);font-size:12px;text-align:left;vertical-align:middle}
@@ -110,13 +108,20 @@
   .copy-btn,.regen-btn,.sms-btn{padding:6px 8px;border:1px solid var(--border);border-radius:6px;background:#fff;cursor:pointer;font-size:12px}
   .copy-btn:hover,.regen-btn:hover,.sms-btn:hover{filter:brightness(.98)}
 
+  /* ===== АНАЛИТИКА (как раньше) ===== */
+  .bar{display:flex;align-items:center;gap:10px;margin:10px 0}
+  .bar-label{width:34%;min-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:14px}
+  .bar-track{flex:1;height:12px;background:#eef2ff;border-radius:999px;overflow:hidden}
+  .bar-fill{height:100%;background:linear-gradient(90deg,#4b7bff,#1e66ff);border-radius:999px}
+  .bar-value{min-width:90px;text-align:right;font-variant-numeric:tabular-nums;font-size:13px}
+
   @media(max-width:1100px){ .modal-grid{grid-template-columns:repeat(2,1fr)} }
   @media(max-width:720px){
     .modal{ width:100%; height:100dvh; border-radius:0 }
     .modal-body{ padding:10px }
     .modal-grid{ grid-template-columns:1fr }
     .row-grid,.row-grid.participants{ grid-template-columns:1fr 1fr .22fr }
-    .tabs{ gap:3px }
+    .tabs{ gap:4px }
     .pv-2col{grid-template-columns:1fr}
     .pv-row{grid-template-columns:1fr 1fr}
   }
@@ -154,27 +159,29 @@
                 <th>Сумма</th><th>Компания</th><th>Участники</th><th class="action-cell">Действия</th>
               </tr>
             </thead>
-            <tbody id="projects-tbody"><!-- рендерится из JS --></tbody>
+            <tbody id="projects-tbody"></tbody>
           </table>
         </div>
-        <p class="muted" style="margin-top:6px">Клик по названию или по ✏️ — открыть проект. Внутри: список людей, номера Узбекистана, индивидуальные ссылки, «Copy / Regen».</p>
+        <p class="muted" style="margin-top:6px">Клик по названию или по ✏️ — открыть проект. Внутри: участники, номера Узбекистана, индивидуальные ссылки (Copy / Regen).</p>
       </div>
     </div>
   </section>
 
-  <!-- Аналитика (демо) -->
+  <!-- Аналитика -->
   <section id="sec-analytics" class="section">
     <div class="card">
       <div class="card-head"><h2 class="card-title">Аналитика</h2></div>
       <div class="card-body">
-        <h3 style="margin:4px 0 8px;font-size:15px">1) ТОП компаний (∑оценок / 365 / N)</h3>
+        <h3 style="margin:6px 0 10px">1) ТОП компаний по метрике (∑оценок / 365 / N)</h3>
         <div id="bars-companies"></div>
 
-        <h3 style="margin:14px 0 8px;font-size:15px">2) ТОП спикеров (∑оценок / 365 / N)</h3>
+        <h3 style="margin:18px 0 10px">2) ТОП спикеров по метрике (∑оценок / 365 / N)</h3>
         <div id="bars-speakers"></div>
 
-        <h3 style="margin:14px 0 8px;font-size:15px">3) ТОП проектов (средняя оценка)</h3>
+        <h3 style="margin:18px 0 10px">3) ТОП проектов по средней оценке</h3>
         <div id="bars-projects"></div>
+
+        <p class="muted">Метрики — демонстрационные. Замените массивы <code>analyticsData</code> реальными данными с бэка.</p>
       </div>
     </div>
   </section>
@@ -192,76 +199,33 @@
       <h3 class="modal-title" id="modal-title-create">Создать проект (конференцию)</h3>
       <button class="btn ghost" id="close-create" aria-label="Закрыть">✕</button>
     </div>
-
     <form id="project-form">
       <div class="modal-body">
         <div class="modal-grid">
-          <div class="form-row">
-            <label class="req" for="p-name">Название</label>
-            <input id="p-name" type="text" placeholder="Design Summit 2025" required>
-          </div>
-          <div class="form-row">
-            <label class="req" for="p-company">Компания-организатор</label>
-            <input id="p-company" type="text" placeholder="BlueWave Events" required>
-          </div>
-          <div class="form-row">
-            <label class="req" for="p-place">Место / Адрес</label>
-            <input id="p-place" type="text" placeholder="г. Ташкент, ул. Навои, 12" required>
-          </div>
-
-          <div class="form-row">
-            <label class="req" for="p-manager-phone">Телефон менеджера</label>
-            <input id="p-manager-phone" type="tel" inputmode="tel" placeholder="+998 (__) ___-__-__" pattern="^\\+?\\d[\\d\\s\\-()]{6,}$" required>
-          </div>
-          <div class="form-row">
-            <label class="req" for="p-date-start">Дата начала</label>
-            <input id="p-date-start" type="date" required>
-          </div>
-          <div class="form-row">
-            <label class="req" for="p-date-end">Дата окончания</label>
-            <input id="p-date-end" type="date" required>
-          </div>
-
-          <div class="form-row">
-            <label class="req" for="p-time-start">Время начала</label>
-            <input id="p-time-start" type="time" required>
-          </div>
-          <div class="form-row">
-            <label class="req" for="p-time-end">Время окончания</label>
-            <input id="p-time-end" type="time" required>
-          </div>
-
-          <div class="form-row">
-            <label class="req" for="p-amount">Сумма (UZS)</label>
-            <input id="p-amount" type="number" min="0" step="1000" placeholder="0" required>
-          </div>
-          <div class="form-row">
-            <label for="p-status">Статус</label>
-            <input id="p-status" type="text" placeholder="Черновик / Опубликован">
-          </div>
+          <div class="form-row"><label class="req" for="p-name">Название</label><input id="p-name" type="text" placeholder="Design Summit 2025" required></div>
+          <div class="form-row"><label class="req" for="p-company">Компания-организатор</label><input id="p-company" type="text" placeholder="BlueWave Events" required></div>
+          <div class="form-row"><label class="req" for="p-place">Место / Адрес</label><input id="p-place" type="text" placeholder="г. Ташкент, ул. Навои, 12" required></div>
+          <div class="form-row"><label class="req" for="p-manager-phone">Телефон менеджера</label><input id="p-manager-phone" type="tel" inputmode="tel" placeholder="+998 (__) ___-__-__" pattern="^\\+?\\d[\\d\\s\\-()]{6,}$" required></div>
+          <div class="form-row"><label class="req" for="p-date-start">Дата начала</label><input id="p-date-start" type="date" required></div>
+          <div class="form-row"><label class="req" for="p-date-end">Дата окончания</label><input id="p-date-end" type="date" required></div>
+          <div class="form-row"><label class="req" for="p-time-start">Время начала</label><input id="p-time-start" type="time" required></div>
+          <div class="form-row"><label class="req" for="p-time-end">Время окончания</label><input id="p-time-end" type="time" required></div>
+          <div class="form-row"><label class="req" for="p-amount">Сумма (UZS)</label><input id="p-amount" type="number" min="0" step="1000" placeholder="0" required></div>
+          <div class="form-row"><label for="p-status">Статус</label><input id="p-status" type="text" placeholder="Черновик / Опубликован"></div>
         </div>
 
-        <!-- Спикеры -->
         <div class="subcard" id="speakers-card">
-          <div class="subhead">
-            <strong>Спикеры</strong>
-            <button class="btn ghost" type="button" id="add-speaker">+ Добавить спикера</button>
-          </div>
+          <div class="subhead"><strong>Спикеры</strong><button class="btn ghost" type="button" id="add-speaker">+ Добавить спикера</button></div>
           <div id="speakers-list"></div>
           <p class="muted">Имя и тема выступления. Можно добавить несколько.</p>
         </div>
 
-        <!-- Участники -->
         <div class="subcard" id="participants-card">
-          <div class="subhead">
-            <strong>Участники</strong>
-            <button class="btn ghost" type="button" id="add-participant">+ Добавить участника</button>
-          </div>
+          <div class="subhead"><strong>Участники</strong><button class="btn ghost" type="button" id="add-participant">+ Добавить участника</button></div>
           <div id="participants-list"></div>
           <p class="muted">Имя и номер телефона (для SMS с одноразовой ссылкой). Если пропустить — добавим 10–30 демо-участников автоматически.</p>
         </div>
       </div>
-
       <div class="modal-actions">
         <button type="button" class="btn ghost" id="cancel-create">Отмена</button>
         <button type="submit" class="btn primary">Сохранить проект</button>
@@ -277,10 +241,8 @@
       <h3 class="modal-title" id="modal-title-view">Проект</h3>
       <button class="btn ghost" id="close-view" aria-label="Закрыть">✕</button>
     </div>
-
     <div class="modal-body">
       <div class="pv-grid">
-        <!-- Обзор -->
         <div class="pv-card">
           <h4 class="pv-title">Обзор проекта</h4>
           <div class="pv-2col">
@@ -301,38 +263,26 @@
             <input id="pv-amount" class="input-sm" type="number" placeholder="Сумма (UZS)">
             <input id="pv-status" class="input-sm" placeholder="Статус">
           </div>
-          <div class="pv-actions">
-            <button id="pv-save" class="btn primary">Сохранить изменения</button>
-          </div>
+          <div class="pv-actions"><button id="pv-save" class="btn primary">Сохранить изменения</button></div>
         </div>
 
-        <!-- Участники -->
         <div class="pv-card">
           <h4 class="pv-title">Участники проекта</h4>
-
           <div class="ppl-controls">
             <input id="ppl-search" class="input-sm" placeholder="Поиск по имени или телефону" style="max-width:280px">
             <button id="ppl-add" class="btn ghost" type="button">+ Добавить участника</button>
             <span class="muted" id="ppl-count"></span>
           </div>
-
           <div style="overflow:auto">
             <table class="ppl-table">
-              <thead>
-                <tr>
-                  <th>#</th><th>Имя</th><th>Телефон (UZ)</th><th>Индивидуальная ссылка</th><th>Действия</th>
-                </tr>
-              </thead>
-              <tbody id="ppl-tbody"><!-- рендерится из JS --></tbody>
+              <thead><tr><th>#</th><th>Имя</th><th>Телефон (UZ)</th><th>Индивидуальная ссылка</th><th>Действия</th></tr></thead>
+              <tbody id="ppl-tbody"></tbody>
             </table>
           </div>
         </div>
       </div>
     </div>
-
-    <div class="modal-actions">
-      <button type="button" class="btn ghost" id="cancel-view">Закрыть</button>
-    </div>
+    <div class="modal-actions"><button type="button" class="btn ghost" id="cancel-view">Закрыть</button></div>
   </div>
 </div>
 
@@ -346,68 +296,48 @@ tabs.forEach(t=>t.addEventListener('click',()=>{
 }));
 
 /* ---------- Utils ---------- */
-const FEEDBACK_BASE = (location.origin || 'https://example.com') + '/feedback/';
+const FEEDBACK_BASE = (location.origin && location.origin!=='null' ? location.origin : 'https://example.com') + '/feedback/';
 const rand = (n)=>Math.floor(Math.random()*n);
-const pad2 = (n)=>String(n).padStart(2,'0');
-const token = (len=12)=>{
-  const chars='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-  let out=''; for(let i=0;i<len;i++) out+=chars[rand(chars.length)];
-  return out;
-};
+const token = (len=14)=>{ const c='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'; let s=''; for(let i=0;i<len;i++) s+=c[rand(c.length)]; return s; };
 const uzCodes = ['90','91','93','94','95','97','98','99','33','88'];
-function randomUzPhone(){
-  const code = uzCodes[rand(uzCodes.length)];
-  const n = String(Math.floor(1_000_000 + Math.random()*9_000_000)); // 7 цифр
-  return `+998 ${code} ${n.slice(0,3)}-${n.slice(3,5)}-${n.slice(5)}`;
-}
+function randomUzPhone(){ const code=uzCodes[rand(uzCodes.length)], n=String(Math.floor(1_000_000+Math.random()*9_000_000)); return `+998 ${code} ${n.slice(0,3)}-${n.slice(3,5)}-${n.slice(5)}`; }
 const firstNames = ['Aziz','Alisher','Madina','Gulnora','Jasur','Sevara','Nigora','Javlon','Sardor','Umid','Shahzoda','Murod','Diyora','Kamola','Sherzod','Iroda','Shaxzod','Muxlisa','Akmal','Dilshod','Sitora','Otabek','Lola','Doston','Maftuna','Javohir','Malika','Bekzod','Nozima','Said','Jahongir','Zarina','Shahnoza','Bobur'];
 function randomName(){ return firstNames[rand(firstNames.length)]; }
 
-/* ---------- In-memory store ---------- */
+/* ---------- Data store ---------- */
 let projects = [
   seedProject(1,'Design Summit 2025','BlueWave Events','г. Ташкент, Истиқлол, 10','+998 90 123-45-67','2025-05-12','2025-05-13','09:00','18:00',12000000,'Черновик', rand(10)+12),
   seedProject(2,'Startup Meetup','Rocket Group','г. Ташкент, Амир Темур, 25','+998 97 765-43-21','2025-07-02','2025-07-02','18:30','21:00',3500000,'Опубликован', rand(10)+10),
 ];
 function seedProject(id,name,company,place,manager,ds,de,ts,te,amount,status,peopleCount){
-  const participants=[];
-  const n=peopleCount ?? (10+rand(21)); // 10..30
-  for(let i=0;i<n;i++){
-    participants.push({ id:i+1, name:randomName(), phone:randomUzPhone(), token:token(14) });
-  }
+  const participants=[]; const n=peopleCount??(10+rand(21));
+  for(let i=0;i<n;i++) participants.push({ id:i+1, name:randomName(), phone:randomUzPhone(), token:token() });
   return { id, name, company, place, manager_phone:manager, date_start:ds, date_end:de, time_start:ts, time_end:te, amount, status, speakers:[], participants };
 }
 
-/* ---------- Render projects table ---------- */
+/* ---------- Projects table ---------- */
 const tbody = document.getElementById('projects-tbody');
 function renderProjectsTable(){
   tbody.innerHTML='';
   projects.forEach((p,idx)=>{
     const tr=document.createElement('tr');
-    tr.innerHTML = `
+    tr.innerHTML=`
       <td>${idx+1}</td>
       <td><span class="linkish" data-open="${p.id}">${p.name}</span></td>
       <td>${p.date_start||'—'} — ${p.date_end||'—'}</td>
       <td>${p.time_start||'—'} — ${p.time_end||'—'}</td>
-      <td>${p.amount ? Number(p.amount).toLocaleString('ru-RU')+' UZS':'—'}</td>
+      <td>${p.amount?Number(p.amount).toLocaleString('ru-RU')+' UZS':'—'}</td>
       <td>${p.company||'—'}</td>
       <td>${p.participants.length}</td>
-      <td class="action-cell">
-        <button class="btn ghost" data-edit="${p.id}" title="Открыть/изменить">✏️</button>
-      </td>
-    `;
+      <td class="action-cell"><button class="btn ghost" data-edit="${p.id}" title="Открыть/изменить">✏️</button></td>`;
     tbody.appendChild(tr);
   });
-
-  tbody.querySelectorAll('[data-open]').forEach(el=>{
-    el.addEventListener('click',()=>openProjectView(Number(el.dataset.open)));
-  });
-  tbody.querySelectorAll('[data-edit]').forEach(el=>{
-    el.addEventListener('click',()=>openProjectView(Number(el.dataset.edit)));
-  });
+  tbody.querySelectorAll('[data-open]').forEach(el=>el.addEventListener('click',()=>openProjectView(Number(el.dataset.open))));
+  tbody.querySelectorAll('[data-edit]').forEach(el=>el.addEventListener('click',()=>openProjectView(Number(el.dataset.edit))));
 }
 renderProjectsTable();
 
-/* ---------- Analytics (demo simple bars) ---------- */
+/* ---------- Analytics (как раньше) ---------- */
 const analyticsData = {
   companies: [
     { company: 'BlueWave Events', ratings: [8,9,7,9,8] },
@@ -428,7 +358,7 @@ const analyticsData = {
 function metric(sum,n){ return n?(sum/365)/n:0; }
 function avg(arr){ return arr.length? arr.reduce((a,b)=>a+b,0)/arr.length : 0; }
 function renderBars(containerId, rows, labelKey, valueFn){
-  const cont=document.getElementById(containerId); if(!cont) return;
+  const cont=document.getElementById(containerId);
   cont.innerHTML='';
   if(!rows.length){ cont.textContent='Нет данных'; return; }
   const vals=rows.map(valueFn), max=Math.max(...vals,1);
@@ -453,7 +383,6 @@ const mCreate = document.getElementById('modal-create');
 const btnNew   = document.getElementById('btn-new');
 const btnCloseCreate = document.getElementById('close-create');
 const btnCancelCreate = document.getElementById('cancel-create');
-
 btnNew.addEventListener('click', ()=>{ mCreate.classList.add('show'); document.body.style.overflow='hidden'; ensureOneRowDefaults(); });
 [btnCloseCreate, btnCancelCreate].forEach(b=>b.addEventListener('click', ()=>{ mCreate.classList.remove('show'); document.body.style.overflow=''; }));
 mCreate.addEventListener('click', (e)=>{ if(e.target===mCreate) { mCreate.classList.remove('show'); document.body.style.overflow=''; } });
@@ -463,29 +392,16 @@ const speakersList=document.getElementById('speakers-list');
 const participantsList=document.getElementById('participants-list');
 document.getElementById('add-speaker').addEventListener('click', ()=>addSpeakerRow());
 document.getElementById('add-participant').addEventListener('click', ()=>addParticipantRow());
-function ensureOneRowDefaults(){
-  if(!document.querySelector('.speaker-row')) addSpeakerRow();
-  if(!document.querySelector('.participant-row')) addParticipantRow();
-}
+function ensureOneRowDefaults(){ if(!document.querySelector('.speaker-row')) addSpeakerRow(); if(!document.querySelector('.participant-row')) addParticipantRow(); }
 function addSpeakerRow(nameVal='', topicVal=''){
-  const row=document.createElement('div');
-  row.className='row-grid speaker-row';
-  row.innerHTML=`
-    <input type="text" placeholder="Имя спикера" value="${nameVal}">
-    <input type="text" placeholder="Тема выступления" value="${topicVal}">
-    <button class="remove" type="button" aria-label="Удалить">🗑</button>`;
-  row.querySelector('.remove').onclick=()=>row.remove();
-  speakersList.appendChild(row);
+  const row=document.createElement('div'); row.className='row-grid speaker-row';
+  row.innerHTML=`<input type="text" placeholder="Имя спикера" value="${nameVal}"><input type="text" placeholder="Тема выступления" value="${topicVal}"><button class="remove" type="button" aria-label="Удалить">🗑</button>`;
+  row.querySelector('.remove').onclick=()=>row.remove(); speakersList.appendChild(row);
 }
 function addParticipantRow(nameVal='', phoneVal=''){
-  const row=document.createElement('div');
-  row.className='row-grid participants participant-row';
-  row.innerHTML=`
-    <input type="text" placeholder="Имя участника" value="${nameVal}">
-    <input type="tel" placeholder="+998 (__) ___-__-__" value="${phoneVal}" pattern="^\\+?\\d[\\d\\s\\-()]{6,}$" title="Введите корректный номер">
-    <button class="remove" type="button" aria-label="Удалить">🗑</button>`;
-  row.querySelector('.remove').onclick=()=>row.remove();
-  participantsList.appendChild(row);
+  const row=document.createElement('div'); row.className='row-grid participants participant-row';
+  row.innerHTML=`<input type="text" placeholder="Имя участника" value="${nameVal}"><input type="tel" placeholder="+998 (__) ___-__-__" value="${phoneVal}" pattern="^\\+?\\d[\\d\\s\\-()]{6,}$" title="Введите корректный номер"><button class="remove" type="button" aria-label="Удалить">🗑</button>`;
+  row.querySelector('.remove').onclick=()=>row.remove(); participantsList.appendChild(row);
 }
 
 /* submit create */
@@ -499,19 +415,13 @@ document.getElementById('project-form').addEventListener('submit', (e)=>{
     time_start: val('#p-time-start'), time_end: val('#p-time-end'),
     amount: Number(val('#p-amount')||0), status: val('#p-status') || 'Черновик',
     speakers: rows('.speaker-row').map(r=>({name:r.a, topic:r.b})),
-    participants: rows('.participant-row').map((r,i)=>({id:i+1, name:r.a, phone:r.b, token:token(14)})),
+    participants: rows('.participant-row').map((r,i)=>({id:i+1, name:r.a, phone:r.b, token:token()})),
   };
-  // если участников не добавили — сгенерируем 10–30
-  if(payload.participants.length===0){
-    const n=10+rand(21);
-    for(let i=0;i<n;i++){ payload.participants.push({id:i+1, name:randomName(), phone:randomUzPhone(), token:token(14)}); }
-  }
+  if(payload.participants.length===0){ const n=10+rand(21); for(let i=0;i<n;i++){ payload.participants.push({id:i+1, name:randomName(), phone:randomUzPhone(), token:token()}); } }
   projects.push(payload);
   renderProjectsTable();
-  // reset + close
   e.target.reset(); speakersList.innerHTML=''; participantsList.innerHTML='';
   mCreate.classList.remove('show'); document.body.style.overflow='';
-  // открыть проект сразу
   openProjectView(payload.id);
 });
 const val=sel=>document.querySelector(sel).value.trim();
@@ -526,13 +436,10 @@ mView.addEventListener('click', (e)=>{ if(e.target===mView) closeProjectView(); 
 function closeProjectView(){ mView.classList.remove('show'); document.body.style.overflow=''; }
 
 let currentProjectId = null;
-
 function openProjectView(id){
   const p = projects.find(x=>x.id===id); if(!p) return;
   currentProjectId = id;
   document.getElementById('modal-title-view').textContent = `Проект: ${p.name}`;
-
-  // overview fields
   byId('pv-name').value = p.name || '';
   byId('pv-company').value = p.company || '';
   byId('pv-place').value = p.place || '';
@@ -543,7 +450,6 @@ function openProjectView(id){
   byId('pv-tend').value   = p.time_end || '';
   byId('pv-amount').value = p.amount || '';
   byId('pv-status').value = p.status || '';
-
   renderPeopleTable(p.participants);
   mView.classList.add('show'); document.body.style.overflow='hidden';
 }
@@ -573,7 +479,7 @@ const pplCount = document.getElementById('ppl-count');
 document.getElementById('ppl-add').addEventListener('click', ()=>{
   const p = projects.find(x=>x.id===currentProjectId); if(!p) return;
   const nextId = (p.participants.at(-1)?.id || 0) + 1;
-  p.participants.push({ id: nextId, name: randomName(), phone: randomUzPhone(), token: token(14) });
+  p.participants.push({ id: nextId, name: randomName(), phone: randomUzPhone(), token: token() });
   renderPeopleTable(p.participants);
 });
 pplSearch.addEventListener('input', ()=>{
@@ -601,15 +507,11 @@ function renderPeopleTable(list, filtered=false){
           <button class="regen-btn" data-regen="${u.id}">Regen</button>
         </div>
       </td>
-      <td>
-        <button class="sms-btn" data-sms="${u.id}">SMS</button>
-      </td>
-    `;
+      <td><button class="sms-btn" data-sms="${u.id}">SMS</button></td>`;
     pplTbody.appendChild(tr);
   });
   pplCount.textContent = `Всего: ${filtered ? arr.length + ' (из ' + p.participants.length + ')' : p.participants.length}`;
 
-  // wire inputs
   pplTbody.querySelectorAll('input[data-field]').forEach(inp=>{
     inp.addEventListener('change', ()=>{
       const id = Number(inp.dataset.id);
@@ -618,7 +520,6 @@ function renderPeopleTable(list, filtered=false){
       if(user){ user[field] = inp.value.trim(); }
     });
   });
-  // copy
   pplTbody.querySelectorAll('[data-copy]').forEach(btn=>{
     btn.addEventListener('click', ()=>{
       const id=Number(btn.dataset.copy);
@@ -628,16 +529,14 @@ function renderPeopleTable(list, filtered=false){
       btn.textContent='Copied'; setTimeout(()=>btn.textContent='Copy',1000);
     });
   });
-  // regen token
   pplTbody.querySelectorAll('[data-regen]').forEach(btn=>{
     btn.addEventListener('click', ()=>{
       const id=Number(btn.dataset.regen);
       const user=p.participants.find(x=>x.id===id); if(!user) return;
-      user.token = token(14);
-      renderPeopleTable(p.participants); // перерисуем, чтобы обновить ссылку
+      user.token = token();
+      renderPeopleTable(p.participants);
     });
   });
-  // sms demo
   pplTbody.querySelectorAll('[data-sms]').forEach(btn=>{
     btn.addEventListener('click', ()=>{
       const id=Number(btn.dataset.sms);
@@ -646,9 +545,6 @@ function renderPeopleTable(list, filtered=false){
     });
   });
 }
-
-/* ---------- helpers ---------- */
-function openCreate(){ mCreate.classList.add('show'); document.body.style.overflow='hidden'; ensureOneRowDefaults(); }
 </script>
 </body>
 </html>
